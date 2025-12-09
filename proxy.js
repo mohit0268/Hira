@@ -7,9 +7,9 @@ const isProtectedRoute = createRouteMatcher([
   '/tasks(.*)?',
 ])
 
-export default clerkMiddleware((auth,req)=>{
-  if(!auth().userId && isProtectedRoute(req)){
-    return auth().redirectToSignIn();
+export default clerkMiddleware(async(auth,req)=>{
+  if(!auth() && isProtectedRoute(req)){
+    return await auth().redirectToSignIn();
   }
 });
 
